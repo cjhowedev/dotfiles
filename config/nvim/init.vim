@@ -127,4 +127,5 @@ if has('autocmd')
 endif
 
 " keybindings
+nnoremap <silent> <leader>f :FZF<cr>
 nnoremap <silent> <leader>q :bp\|bd #<cr>
