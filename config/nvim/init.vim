@@ -9,6 +9,7 @@ Plug 'morhetz/gruvbox'
 let g:gruvbox_italic=1
 
 Plug 'vim-airline/vim-airline'
+Plug 'edkolev/tmuxline.vim'
 let g:airline_theme='gruvbox'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
@@ -52,6 +53,7 @@ Plug 'airblade/vim-gitgutter'
 
 " Language Plugins
 
+Plug 'artur-shaik/vim-javacomplete2'
 Plug 'mattn/emmet-vim'
 Plug 'keith/swift.vim'
 Plug 'fatih/vim-go'

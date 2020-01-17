@@ -17,3 +17,5 @@ link_folder local/share/nvim
 
 link_file zshrc
 link_file gitignore
+link_file tmux.conf
+link_file tmuxline.conf
