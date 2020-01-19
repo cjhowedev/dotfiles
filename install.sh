@@ -9,6 +9,8 @@ function link_folder() {
 }
 
 function link_file() {
+  rm -rf "$HOME/.$1"
+  mkdir -p "$HOME/.$(dirname "$1")"
   ln -sf "$DIR/$1" "$HOME/.$1"
 }
 

@@ -98,11 +98,11 @@ set hls is ic scs
 " show trailing whitespace
 set list lcs=trail:.
 
-" use the system clipboard
-set clipboard=unnamedplus
-
 " disable the bell
 set bo=all
+
+" use tmux and osc 52 clipboard
+set clipboard=unnamedplus
 
 " set mapleader to space
 nnoremap <Space> <Nop>
