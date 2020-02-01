@@ -99,7 +99,7 @@ set ls=2 sc
 set hls is ic scs
 
 " show trailing whitespace
-set list lcs=trail:.
+set list lcs=trail:.,tab:>\ ,eol:$
 
 " disable the bell
 set bo=all
@@ -122,7 +122,9 @@ if has('autocmd')
     \ setlocal ts=4 sts=4 sw=4
 
   au BufNewFile,BufRead *.go
-    \ setlocal ts=4 sts=4 sw=4 noet
+    \ setlocal ts=4 sts=4 sw=4 noet |
+    \ setlocal lcs=trail:.,tab:\ \ ,eol:$ |
+    \ setlocal cc=
 
   au BufNewFile,BufRead *.make
     \ setlocal ts=4 sts=4 sw=4 noet
