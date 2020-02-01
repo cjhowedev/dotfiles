@@ -1,9 +1,11 @@
-" turn off vi compatibility and set unicode encoding
+" Plugins {{{
+
+" turn off vi compatibility and set unicode encoding - required for plug
 set nocp enc=utf-8
 
 call plug#begin(stdpath('data') . '/plugged')
 
-" Visual Plugins
+" Visual Plugins {{{
 
 Plug 'morhetz/gruvbox'
 let g:gruvbox_italic=1
@@ -14,13 +16,17 @@ let g:airline_theme='gruvbox'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
 
-" Navigation Plugins
+" }}}
+
+" Navigation Plugins {{{
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 nnoremap <silent> <leader>f :FZF -m<cr>
 
-" Editing Plugins
+" }}}
+
+" Editing Plugins {{{
 
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
@@ -31,32 +37,47 @@ let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
 Plug 'dense-analysis/ale'
 let g:ale_linters_explicit = 1
 let g:ale_linters = {
-\ 'javascript': ['eslint'],
-\ 'go': ['golangci-lint']
+\ 'javascript': ['eslint', 'tsserver'],
+\ 'typescript': ['eslint', 'tsserver'],
+\ 'go': ['golangci-lint', 'gopls']
 \}
 let g:ale_fixers = {
-\ 'javascript': ['prettier'],
+\ 'javascript': ['prettier', 'eslint'],
+\ 'typescript': ['prettier', 'eslint'],
 \ 'css': ['prettier'],
+\ 'scss': ['prettier'],
 \ 'html': ['prettier'],
+\ 'markdown': ['prettier'],
+\ 'json': ['prettier'],
 \ 'go': ['goimports']
 \}
 let g:ale_fix_on_save = 1
+let g:ale_completion_tsserver_autoimport = 1
+let g:ale_completion_enabled = 1
+set omnifunc=ale#completion#OmniFunc
 
 Plug 'nathanaelkane/vim-indent-guides'
 let g:indent_guides_enable_on_vim_startup = 1
 
-" Git Plugins
+" }}}
+
+" Git Plugins {{{
 
 Plug 'tpope/vim-git'
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 
-" Language Plugins
+" }}}
 
+" Language Plugins {{{
+
+" Backend Development
 Plug 'artur-shaik/vim-javacomplete2'
-Plug 'mattn/emmet-vim'
 Plug 'keith/swift.vim'
 Plug 'fatih/vim-go'
+
+" Web Development
+Plug 'mattn/emmet-vim'
 Plug 'leafgarland/typescript-vim'
 Plug 'peitalin/vim-jsx-typescript'
 Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
@@ -65,7 +86,13 @@ Plug 'mxw/vim-jsx'
 Plug 'pangloss/vim-javascript'
 let g:javascript_plugin_jsdoc = 1
 
+" }}}
+
 call plug#end()
+
+" }}}
+
+" Options {{{
 
 " Syntax highlighting
 set termguicolors
@@ -104,16 +131,26 @@ set list lcs=trail:.,tab:>\ ,eol:$
 " disable the bell
 set bo=all
 
-" use tmux and osc 52 clipboard
+" use syntax folding by default
+set foldmethod=syntax
+
+" use system clipboard
 set clipboard=unnamedplus
 
-" set mapleader to space
-nnoremap <Space> <Nop>
-let mapleader = " "
+" }}}
 
-" autocmds
+" Autocmds {{{
+
 if has('autocmd')
-  au BufWritePost init.vim source $MYVIMRC
+  au BufWritePost *
+    \ execute ':Git add %'
+
+  au BufWritePost init.vim
+    \ source $MYVIMRC |
+    \ setlocal foldmethod=marker
+
+  au BufNewFile,BufRead *.vim
+    \ setlocal foldmethod=marker
 
   au BufNewFile,BufRead *.py
     \ setlocal ts=4 sts=4 sw=4
@@ -124,7 +161,8 @@ if has('autocmd')
   au BufNewFile,BufRead *.go
     \ setlocal ts=4 sts=4 sw=4 noet |
     \ setlocal lcs=trail:.,tab:\ \ ,eol:$ |
-    \ setlocal cc=
+    \ setlocal cc= |
+    \ setlocal omnifunc=ale#completion#OmniFunc
 
   au BufNewFile,BufRead *.make
     \ setlocal ts=4 sts=4 sw=4 noet
@@ -133,6 +171,15 @@ if has('autocmd')
     \ setlocal ts=4 sts=4 sw=4 noet
 endif
 
-" keybindings
+" }}}
+
+" Keybindings {{{
+
+" set mapleader to space
+nnoremap <Space> <Nop>
+let mapleader = " "
+
 nnoremap <silent> <leader>f :FZF<cr>
 nnoremap <silent> <leader>q :bp\|bd #<cr>
+
+" }}}

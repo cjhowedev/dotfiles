@@ -12,6 +12,8 @@ export PATH="$HOME/.local/bin:$PATH"
 
 alias ls='ls -A'
 alias ll='ls -lhA'
+alias vim=nvim
+alias e=nvim
 
 # fzf specific setup
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
