@@ -57,6 +57,9 @@ Plug 'artur-shaik/vim-javacomplete2'
 Plug 'mattn/emmet-vim'
 Plug 'keith/swift.vim'
 Plug 'fatih/vim-go'
+Plug 'leafgarland/typescript-vim'
+Plug 'peitalin/vim-jsx-typescript'
+Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 Plug 'mxw/vim-jsx'
 
 Plug 'pangloss/vim-javascript'
