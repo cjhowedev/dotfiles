@@ -39,7 +39,8 @@ let g:ale_linters_explicit = 1
 let g:ale_linters = {
 \ 'javascript': ['eslint', 'tsserver'],
 \ 'typescript': ['eslint', 'tsserver'],
-\ 'go': ['golangci-lint', 'gopls']
+\ 'go': ['golangci-lint', 'gopls'],
+\ 'rust': ['rls']
 \}
 let g:ale_fixers = {
 \ 'javascript': ['prettier', 'eslint'],
@@ -49,7 +50,8 @@ let g:ale_fixers = {
 \ 'html': ['prettier'],
 \ 'markdown': ['prettier'],
 \ 'json': ['prettier'],
-\ 'go': ['goimports']
+\ 'go': ['goimports'],
+\ 'rust': ['rustfmt']
 \}
 let g:ale_fix_on_save = 1
 let g:ale_completion_tsserver_autoimport = 1
@@ -75,6 +77,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'artur-shaik/vim-javacomplete2'
 Plug 'keith/swift.vim'
 Plug 'fatih/vim-go'
+Plug 'rust-lang/rust.vim'
 
 " Web Development
 Plug 'mattn/emmet-vim'
