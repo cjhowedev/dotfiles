@@ -67,14 +67,12 @@ let g:indent_guides_enable_on_vim_startup = 1
 
 Plug 'tpope/vim-git'
 Plug 'tpope/vim-fugitive'
-Plug 'airblade/vim-gitgutter'
 
 " }}}
 
 " Language Plugins {{{
 
 " Backend Development
-Plug 'artur-shaik/vim-javacomplete2'
 Plug 'keith/swift.vim'
 Plug 'fatih/vim-go'
 Plug 'rust-lang/rust.vim'
@@ -160,6 +158,10 @@ if has('autocmd')
 
   au BufNewFile,BufRead *.swift
     \ setlocal ts=4 sts=4 sw=4
+
+  au BufNewFile,BufRead *.java
+    \ setlocal ts=4 sts=4 sw=4
+    \ setlocal cc= |
 
   au BufNewFile,BufRead *.go
     \ setlocal ts=4 sts=4 sw=4 noet |
