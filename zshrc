@@ -17,5 +17,6 @@ alias e=nvim
 
 # fzf specific setup
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[ -f ~/.zshrc.local ] && source ~/.zshrc.local
 
 eval "$(ssh-agent)"
