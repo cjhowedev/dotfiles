@@ -97,7 +97,7 @@ call plug#end()
 
 " Syntax highlighting
 set termguicolors
-colorscheme gruvbox
+silent! colorscheme gruvbox
 
 " show line numbers and cursor position
 set nu ru
