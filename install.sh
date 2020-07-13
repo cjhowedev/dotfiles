@@ -14,5 +14,10 @@ function link_file() {
   ln -sf "$DIR/$1" "$HOME/.$1"
 }
 
+link_folder config/nvim
+link_folder local/share/nvim
+
 link_file zshrc
 link_file gitignore
+link_file tmux.conf
+link_file tmuxline.conf
