@@ -8,7 +8,7 @@ bindkey -v
 export EDITOR=nvim
 export FZF_DEFAULT_COMMAND='rg --files'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-export PATH="$HOME/.local/bin:$HOME/go/bin:$PATH"
+export PATH="$HOME/bin:$HOME/.local/bin:$HOME/go/bin:$PATH"
 
 alias ls='ls -A'
 alias ll='ls -lhA'

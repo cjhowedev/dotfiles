@@ -8,13 +8,7 @@ call plug#begin(stdpath('data') . '/plugged')
 " Visual Plugins {{{
 
 Plug 'morhetz/gruvbox'
-let g:gruvbox_italic=1
-
-Plug 'vim-airline/vim-airline'
 Plug 'edkolev/tmuxline.vim'
-let g:airline_theme='gruvbox'
-let g:airline#extensions#tabline#enabled = 1
-let g:airline_powerline_fonts = 1
 
 " }}}
 
@@ -40,7 +34,8 @@ let g:ale_linters = {
 \ 'javascript': ['eslint', 'tsserver'],
 \ 'typescript': ['eslint', 'tsserver'],
 \ 'go': ['golangci-lint', 'gopls'],
-\ 'rust': ['rls']
+\ 'rust': ['rls'],
+\ 'java': ['javalsp'],
 \}
 let g:ale_fixers = {
 \ 'javascript': ['prettier', 'eslint'],
