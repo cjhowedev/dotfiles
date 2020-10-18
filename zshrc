@@ -19,8 +19,4 @@ alias e=nvim
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 [ -f ~/.zshrc.local ] && source ~/.zshrc.local
 
-if [ -e /home/hwechri/.nix-profile/etc/profile.d/nix.sh ]; then
-  . /home/hwechri/.nix-profile/etc/profile.d/nix.sh
-fi
-
 eval "$(ssh-agent)"
