@@ -134,14 +134,8 @@ if has('autocmd')
     \ setlocal ts=4 sts=4 sw=4
 
   au BufNewFile,BufRead *.java
-    \ setlocal ts=4 sts=4 sw=4
-    \ setlocal cc= |
-
-  au BufNewFile,BufRead *.go
-    \ setlocal ts=4 sts=4 sw=4 noet |
-    \ setlocal lcs=trail:.,tab:\ \ ,eol:$ |
-    \ setlocal cc= |
-    \ setlocal omnifunc=ale#completion#OmniFunc
+    \ setlocal ts=4 sts=4 sw=4 |
+    \ setlocal cc=
 
   au BufNewFile,BufRead *.make
     \ setlocal ts=4 sts=4 sw=4 noet
