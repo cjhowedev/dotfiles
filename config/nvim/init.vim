@@ -134,7 +134,6 @@ if has('autocmd')
     \ setlocal ts=4 sts=4 sw=4
 
   au BufNewFile,BufRead *.java
-    \ setlocal ts=4 sts=4 sw=4 |
     \ setlocal cc=
 
   au BufNewFile,BufRead *.make
@@ -154,5 +153,13 @@ let mapleader = " "
 
 nnoremap <silent> <leader>f :FZF<cr>
 nnoremap <silent> <leader>q :bp\|bd #<cr>
+
+inoremap <silent><expr> <TAB>
+  \ pumvisible() ? "\<C-n>" :
+  \ <SID>check_back_space() ? "\<TAB>" :
+  \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
+  \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
 " }}}
