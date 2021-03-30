@@ -16,4 +16,4 @@ function link_file() {
 
 link_file zshrc
 link_file gitignore
-link_file tmux.conf
+link_file gitconfig

@@ -1,0 +1,12 @@
+[user]
+	name = Christian Howe
+	email = me@cjoftheweb.me
+	signingkey = 34F6CBDCEB49A7C3
+[core]
+	excludesfile = /Users/christianhowe/.gitignore
+[commit]
+	gpgsign = true
+[init]
+	defaultBranch = develop
+[pull]
+	rebase = true

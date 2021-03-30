@@ -2,7 +2,7 @@
 
 PROMPT='%~%# '
 
-export EDITOR=nano
+export EDITOR='code -w'
 export PATH="$HOME/bin:$HOME/.local/bin:$HOME/go/bin:$PATH"
 
 alias ls='ls -A'
