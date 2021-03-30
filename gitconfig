@@ -3,7 +3,7 @@
 	email = me@cjoftheweb.me
 	signingkey = 34F6CBDCEB49A7C3
 [core]
-	excludesfile = /Users/christianhowe/.gitignore
+	excludesfile = ~/.gitignore
 [commit]
 	gpgsign = true
 [init]
