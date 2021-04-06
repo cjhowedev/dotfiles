@@ -29,4 +29,8 @@ load-nvmrc
 
 eval "$(ssh-agent)" &> /dev/null
 
+if [[ "$(uname -s)" == "Darwin" ]]; then
+  ssh-add -K &> /dev/null
+fi
+
 [ -f ~/.zshrc.local ] && source ~/.zshrc.local
