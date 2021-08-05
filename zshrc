@@ -3,10 +3,13 @@
 PROMPT='%~%# '
 
 export EDITOR='code -w'
-export PATH="$HOME/bin:$HOME/.local/bin:$HOME/go/bin:$PATH"
+export ANDROID_SDK_ROOT=~/android
+export PATH="$ANDROID_SDK_ROOT/cmdline-tools/latest/bin:$PATH"
+export PATH="$ANDROID_SDK_ROOT/platform-tools:$PATH"
+export PATH="$ANDROID_SDK_ROOT/emulator:$PATH"
 
-alias ls='ls -A'
-alias ll='ls -lhA'
+alias ls='ls -Ah'
+alias ll='ls -Ahl'
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
