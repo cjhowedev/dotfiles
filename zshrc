@@ -2,9 +2,8 @@
 
 PROMPT='%~%# '
 
-export EDITOR=nvim
-export PATH="$HOME/bin:$HOME/.local/bin:$PATH"
-export GPG_TTY=$(tty)
+export EDITOR='code -w'
+export PATH="$HOME/bin:$HOME/.local/bin:$HOME/go/bin:$PATH"
 
 alias ls='ls -A'
 alias ll='ls -lhA'
@@ -31,9 +30,7 @@ load-nvmrc
 eval "$(ssh-agent)" &> /dev/null
 
 if [[ "$(uname -s)" == "Darwin" ]]; then
-  ssh-add -K &>/dev/null
-else
-  ssh-add &>/dev/null
+  ssh-add -K &> /dev/null
 fi
 
 [ -f ~/.zshrc.local ] && source ~/.zshrc.local
