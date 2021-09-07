@@ -2,13 +2,11 @@
 
 PROMPT='%~%# '
 
-export EDITOR=nvim
+export EDITOR='code -w'
 export ANDROID_SDK_ROOT=~/android
 export PATH="$ANDROID_SDK_ROOT/cmdline-tools/latest/bin:$PATH"
 export PATH="$ANDROID_SDK_ROOT/platform-tools:$PATH"
 export PATH="$ANDROID_SDK_ROOT/emulator:$PATH"
-export PATH="$HOME/bin:$HOME/.local/bin:$PATH"
-export GPG_TTY=$(tty)
 
 alias ls='ls -Ah'
 alias ll='ls -Ahl'
@@ -35,9 +33,7 @@ load-nvmrc
 eval "$(ssh-agent)" &> /dev/null
 
 if [[ "$(uname -s)" == "Darwin" ]]; then
-  ssh-add -K &>/dev/null
-else
-  ssh-add &>/dev/null
+  ssh-add -K &> /dev/null
 fi
 
 [ -f ~/.zshrc.local ] && source ~/.zshrc.local
