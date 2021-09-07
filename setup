@@ -1,7 +1,17 @@
 #!/usr/bin/env zsh
 DIR=${0:a:h}
 
+set -e
+
+mkdir -p ~/.config
+mkdir -p ~/.local/share
+
 ln -sf $DIR/zshrc ~/.zshrc
 ln -sf $DIR/zprofile ~/.zprofile
 ln -sf $DIR/gitignore ~/.gitignore
-ln -sf $DIR/gitconfig ~/.gitconfig
+ln -sf $DIR/config/nvim ~/.config/
+ln -sf $DIR/local/share/nvim ~/.local/share/
+
+if [[ ! "$(hostname)" =~ "(.*)\.amazon\.com$" ]]; then
+    ln -sf $DIR/gitconfig ~/.gitconfig
+fi
