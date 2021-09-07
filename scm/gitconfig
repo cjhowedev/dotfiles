@@ -4,8 +4,6 @@
 	signingkey = 34F6CBDCEB49A7C3
 [core]
 	excludesfile = ~/.gitignore
-[commit]
-	gpgsign = true
 [init]
 	defaultBranch = develop
 [pull]
