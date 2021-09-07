@@ -1,12 +1,7 @@
 #!/usr/bin/env zsh
 DIR=${0:a:h}
 
-function link_file() {
-  SOURCE=$1
-  TARGET=${2:-.$1}
-  ln -sf "$DIR/$SOURCE" "$HOME/$TARGET"
-}
-
-link_file zshrc
-link_file gitignore
-link_file gitconfig
+ln -sf $DIR/zshrc ~/.zshrc
+ln -sf $DIR/zprofile ~/.zprofile
+ln -sf $DIR/gitignore ~/.gitignore
+ln -sf $DIR/gitconfig ~/.gitconfig

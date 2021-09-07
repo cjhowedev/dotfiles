@@ -3,7 +3,10 @@
 PROMPT='%~%# '
 
 export EDITOR='code -w'
-export PATH="$HOME/bin:$HOME/.local/bin:$HOME/go/bin:$PATH"
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_DATA_HOME="$HOME/.local/share"
+export PATH="$HOME/.pyenv/bin:$HOME/.pyenv/shims:$PATH"
+export PATH="$HOME/bin:$HOME/.local/bin:$PATH"
 
 alias ls='ls -A'
 alias ll='ls -lhA'
@@ -26,6 +29,8 @@ load-nvmrc() {
 }
 add-zsh-hook chpwd load-nvmrc
 load-nvmrc
+
+eval "$(pyenv init -)"
 
 eval "$(ssh-agent)" &> /dev/null
 
