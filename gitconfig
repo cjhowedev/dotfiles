@@ -1,6 +1,6 @@
 [user]
 	name = Christian Howe
-	email = me@cjoftheweb.me
+	email = cj@cjhowe.dev
 	signingkey = 34F6CBDCEB49A7C3
 [core]
 	excludesfile = ~/.gitignore
