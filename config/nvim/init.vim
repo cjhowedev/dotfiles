@@ -45,7 +45,8 @@ let g:coc_global_extensions = [
   \'coc-tsserver',
   \'coc-prettier',
   \'coc-eslint',
-  \'coc-clangd'
+  \'coc-clangd',
+  \'coc-rls'
 \]
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
@@ -117,9 +118,6 @@ set clipboard=unnamedplus
 " Autocmds {{{
 
 if has('autocmd')
-  au BufWritePost *
-    \ execute ':Git add %'
-
   au BufWritePost init.vim
     \ source $MYVIMRC |
     \ setlocal foldmethod=marker
