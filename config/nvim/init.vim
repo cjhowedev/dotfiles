@@ -8,7 +8,6 @@ call plug#begin(stdpath('data') . '/plugged')
 " Visual Plugins {{{
 
 Plug 'morhetz/gruvbox'
-Plug 'edkolev/tmuxline.vim'
 
 " }}}
 
@@ -45,11 +44,12 @@ let g:coc_global_extensions = [
   \'coc-java',
   \'coc-tsserver',
   \'coc-prettier',
-  \'coc-eslint'
+  \'coc-eslint',
+  \'coc-clangd'
 \]
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
-" Backend Development
+" App Development
 Plug 'keith/swift.vim'
 
 " Web Development
