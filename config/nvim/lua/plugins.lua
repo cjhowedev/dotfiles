@@ -47,6 +47,66 @@ return require('packer').startup(function(use)
     end
   }
 
+  use {
+    'neovim/nvim-lspconfig',
+    after = {'hrsh7th/nvim-cmp', 'hrsh7th/cmp-nvim-lsp'},
+    config = function()
+      local capabilities = require('cmp_nvim_lsp').update_capabilities(
+        vim.lsp.protocol.make_client_capabilities()
+      )
+
+      require('lspconfig')['sumneko_lua'].setup{
+        capabilities = capabilities
+      }
+      require'lspconfig'.clangd.setup {
+        capabilities = capabilities
+      }
+      require'lspconfig'.cmake.setup{
+        capabilities = capabilities
+      }
+      require'lspconfig'.eslint.setup {
+        capabilities = capabilities
+      }
+      require'lspconfig'.rust_analyzer.setup{
+        capabilities = capabilities
+      }
+      require'lspconfig'.sourcekit.setup{
+        capabilities = capabilities
+      }
+      require'lspconfig'.tsserver.setup {
+        capabilities = capabilities
+      }
+    end
+  }
+  use 'hrsh7th/cmp-nvim-lsp'
+  use 'hrsh7th/cmp-buffer'
+  use {
+    'hrsh7th/nvim-cmp',
+    config = function()
+      local cmp = require'cmp'
+
+      cmp.setup({
+        mapping = {
+          ['<C-p>'] = cmp.mapping.select_prev_item(),
+          ['<C-n>'] = cmp.mapping.select_next_item(),
+          ['<C-b>'] = cmp.mapping.scroll_docs(-4),
+          ['<C-n>'] = cmp.mapping.scroll_docs(4),
+          ['<C-Space>'] = cmp.mapping.complete(),
+          ['<C-e>'] = cmp.mapping.close(),
+          ['<CR>'] = cmp.mapping.confirm({
+            select = true,
+            behavior = cmp.ConfirmBehavior.Replace
+          })
+        },
+        sources = cmp.config.sources({
+          { name = 'nvim_lsp' },
+        }, {
+          { name = 'buffer' },
+        })
+      })
+    end
+  }
+
   use 'keith/swift.vim'
 
   use 'mattn/emmet-vim'

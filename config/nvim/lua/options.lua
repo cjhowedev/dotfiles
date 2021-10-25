@@ -59,3 +59,6 @@ vim.opt.foldmethod = 'syntax'
 
 -- use system clipboard
 vim.opt.clipboard = 'unnamedplus'
+
+-- for nvim-cmp completion
+vim.opt.completeopt = 'menu,menuone,noselect'
