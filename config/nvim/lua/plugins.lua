@@ -1,69 +1,71 @@
-vim.cmd([[
-" Plugins {{{
+local fn = vim.fn
+local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+if fn.empty(fn.glob(install_path)) > 0 then
+  packer_bootstrap = fn.system({
+    'git',
+    'clone',
+    '--depth',
+    '1',
+    'https://github.com/wbthomason/packer.nvim',
+    install_path
+  })
+end
 
-call plug#begin(stdpath('data') . '/plugged')
+return require('packer').startup(function(use)
+  use 'wbthomason/packer.nvim'
 
-" Visual Plugins {{{
+  -- Visual plugins
 
-Plug 'morhetz/gruvbox'
+  use 'morhetz/gruvbox'
+  use {
+    'nathanaelkane/vim-indent-guides',
+    config = function()
+      vim.g['indent_guides_enable_on_vim_startup'] = 1
+    end
+  }
 
-" }}}
+  -- Navigation plugins
 
-" Navigation Plugins {{{
+  use {
+    'junegunn/fzf',
+    run = 'cd ~/.fzf && ./install --all'
+  }
+  use 'junegunn/fzf.vim'
 
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
-nnoremap <silent> <leader>f :FZF -m<cr>
+  -- Editing plugins
 
-" }}}
+  use 'tpope/vim-commentary'
+  use 'tpope/vim-surround'
+  use 'tpope/vim-git'
+  use 'tpope/vim-fugitive'
 
-" Editing Plugins {{{
+  -- Language plugins
+  use {
+    'editorconfig/editorconfig-vim',
+    config = function()
+      vim.g['EditorConfig_exclude_patterns'] = {'fugitive://.*', 'scp://.*'}
+    end
+  }
 
-Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-surround'
-Plug 'editorconfig/editorconfig-vim'
-let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
-Plug 'nathanaelkane/vim-indent-guides'
-let g:indent_guides_enable_on_vim_startup = 1
+  use 'keith/swift.vim'
 
-" }}}
+  use 'mattn/emmet-vim'
+  use 'leafgarland/typescript-vim'
+  use 'peitalin/vim-jsx-typescript'
+  use {
+    'styled-components/vim-styled-components',
+    branch = 'main'
+  }
+  use 'mxw/vim-jsx'
+  use {
+    'pangloss/vim-javascript',
+    config = function()
+      vim.g['javascript_plugin_jsdoc'] = 1
+    end
+  }
 
-" Git Plugins {{{
-
-Plug 'tpope/vim-git'
-Plug 'tpope/vim-fugitive'
-
-" }}}
-
-" Language Plugins {{{
-
-let g:coc_global_extensions = [
-  \'coc-json',
-  \'coc-java',
-  \'coc-tsserver',
-  \'coc-prettier',
-  \'coc-eslint',
-  \'coc-clangd',
-  \'coc-rls'
-\]
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-
-" App Development
-Plug 'keith/swift.vim'
-
-" Web Development
-Plug 'mattn/emmet-vim'
-Plug 'leafgarland/typescript-vim'
-Plug 'peitalin/vim-jsx-typescript'
-Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
-Plug 'mxw/vim-jsx'
-Plug 'pangloss/vim-javascript'
-let g:javascript_plugin_jsdoc = 1
-
-" }}}
-
-call plug#end()
-
-" }}}
-]])
+  if packer_bootstrap then
+    require('packer').sync()
+  end
+end)
 
