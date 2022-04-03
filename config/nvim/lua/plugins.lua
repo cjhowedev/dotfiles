@@ -1,131 +1,136 @@
 local fn = vim.fn
-local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
+local packer_bootstrap
 if fn.empty(fn.glob(install_path)) > 0 then
-  packer_bootstrap = fn.system({
-    'git',
-    'clone',
-    '--depth',
-    '1',
-    'https://github.com/wbthomason/packer.nvim',
-    install_path
-  })
+    packer_bootstrap = fn.system({
+        'git', 'clone', '--depth', '1',
+        'https://github.com/wbthomason/packer.nvim', install_path
+    })
 end
 
 return require('packer').startup(function(use)
-  use 'wbthomason/packer.nvim'
+    use 'wbthomason/packer.nvim'
 
-  -- Visual plugins
+    -- Visual plugins
 
-  use 'morhetz/gruvbox'
-  use {
-    'nathanaelkane/vim-indent-guides',
-    config = function()
-      vim.g['indent_guides_enable_on_vim_startup'] = 1
-    end
-  }
+    use 'morhetz/gruvbox'
+    use {
+        'nathanaelkane/vim-indent-guides',
+        config = function()
+            vim.g['indent_guides_enable_on_vim_startup'] = 1
+        end
+    }
+    use {'romgrk/barbar.nvim', requires = {'kyazdani42/nvim-web-devicons'}}
 
-  -- Navigation plugins
+    -- Navigation plugins
 
-  use {
-    'junegunn/fzf',
-    run = 'cd ~/.fzf && ./install --all'
-  }
-  use 'junegunn/fzf.vim'
+    use 'junegunn/fzf'
+    use 'junegunn/fzf.vim'
 
-  -- Editing plugins
+    -- Editing plugins
 
-  use 'tpope/vim-commentary'
-  use 'tpope/vim-surround'
-  use 'tpope/vim-git'
-  use 'tpope/vim-fugitive'
+    use 'tpope/vim-commentary'
+    use 'tpope/vim-surround'
+    use 'tpope/vim-git'
+    use 'tpope/vim-fugitive'
+    use {
+        'editorconfig/editorconfig-vim',
+        config = function()
+            vim.g['EditorConfig_exclude_patterns'] = {
+                'fugitive://.*', 'scp://.*'
+            }
+        end
+    }
 
-  -- Language plugins
-  use {
-    'editorconfig/editorconfig-vim',
-    config = function()
-      vim.g['EditorConfig_exclude_patterns'] = {'fugitive://.*', 'scp://.*'}
-    end
-  }
+    -- File tree
 
-  use {
-    'neovim/nvim-lspconfig',
-    after = {'hrsh7th/nvim-cmp', 'hrsh7th/cmp-nvim-lsp'},
-    config = function()
-      local capabilities = require('cmp_nvim_lsp').update_capabilities(
-        vim.lsp.protocol.make_client_capabilities()
-      )
+    use {
+        'kyazdani42/nvim-tree.lua',
+        requires = {'kyazdani42/nvim-web-devicons'},
+        config = function() require'nvim-tree'.setup {} end
+    }
 
-      require('lspconfig')['sumneko_lua'].setup{
-        capabilities = capabilities
-      }
-      require'lspconfig'.clangd.setup {
-        capabilities = capabilities
-      }
-      require'lspconfig'.cmake.setup{
-        capabilities = capabilities
-      }
-      require'lspconfig'.eslint.setup {
-        capabilities = capabilities
-      }
-      require'lspconfig'.rust_analyzer.setup{
-        capabilities = capabilities
-      }
-      require'lspconfig'.sourcekit.setup{
-        capabilities = capabilities
-      }
-      require'lspconfig'.tsserver.setup {
-        capabilities = capabilities
-      }
-    end
-  }
-  use 'hrsh7th/cmp-nvim-lsp'
-  use 'hrsh7th/cmp-buffer'
-  use {
-    'hrsh7th/nvim-cmp',
-    config = function()
-      local cmp = require'cmp'
+    -- Formatting
 
-      cmp.setup({
-        mapping = {
-          ['<C-p>'] = cmp.mapping.select_prev_item(),
-          ['<C-n>'] = cmp.mapping.select_next_item(),
-          ['<C-b>'] = cmp.mapping.scroll_docs(-4),
-          ['<C-n>'] = cmp.mapping.scroll_docs(4),
-          ['<C-Space>'] = cmp.mapping.complete(),
-          ['<C-e>'] = cmp.mapping.close(),
-          ['<CR>'] = cmp.mapping.confirm({
-            select = true,
-            behavior = cmp.ConfirmBehavior.Replace
-          })
+    use {
+        'sbdchd/neoformat',
+        config = function()
+            vim.g.neoformat_enabled_lua = {'luaformat'}
+            vim.g.neoformat_enabled_cpp = {'clangformat'}
+            vim.g.neoformat_enabled_c = {'clangformat'}
+            vim.g.neoformat_enabled_objc = {'clangformat'}
+            vim.g.neoformat_enabled_typescript = {'prettier'}
+            vim.g.neoformat_enabled_typescriptreact = {'prettier'}
+            vim.g.neoformat_enabled_javascript = {'prettier'}
+            vim.g.neoformat_enabled_javascriptreact = {'prettier'}
+            vim.g.neoformat_enabled_html = {'prettier'}
+            vim.g.neoformat_enabled_css = {'prettier'}
+            vim.g.neoformat_enabled_less = {'prettier'}
+            vim.g.neoformat_enabled_sass = {'prettier'}
+            vim.g.neoformat_enabled_scss = {'prettier'}
+            vim.g.neoformat_enabled_markdown = {'prettier'}
+            vim.g.neoformat_basic_format_trim = 1
+            vim.g.neoformat_basic_format_retab = 1
+        end
+    }
+
+    -- Autocomplete
+
+    use({'L3MON4D3/LuaSnip'})
+    use {
+        'hrsh7th/nvim-cmp',
+        requires = {
+            {'saadparwaiz1/cmp_luasnip'}, {'hrsh7th/cmp-path'},
+            {'hrsh7th/cmp-buffer'}, {'hrsh7th/cmp-nvim-lsp'},
+            {'hrsh7th/cmp-nvim-lsp-signature-help'}
         },
-        sources = cmp.config.sources({
-          { name = 'nvim_lsp' },
-        }, {
-          { name = 'buffer' },
-        })
-      })
-    end
-  }
+        config = function()
+            local cmp = require 'cmp'
+            local luasnip = require 'luasnip'
 
-  use 'keith/swift.vim'
+            cmp.setup({
+                snippet = {
+                    expand = function(args)
+                        luasnip.lsp_expand(args.body)
+                    end
+                },
+                mapping = {
+                    ['<C-p>'] = cmp.mapping.select_prev_item(),
+                    ['<C-n>'] = cmp.mapping.select_next_item(),
+                    ['<C-b>'] = cmp.mapping.scroll_docs(-4),
+                    ['<C-f>'] = cmp.mapping.scroll_docs(4),
+                    ['<C-Space>'] = cmp.mapping.complete(),
+                    ['<C-e>'] = cmp.mapping.close(),
+                    ['<CR>'] = cmp.mapping.confirm({
+                        select = true,
+                        behavior = cmp.ConfirmBehavior.Replace
+                    })
+                },
+                sources = cmp.config.sources({
+                    {name = 'nvim_lsp'}, {name = 'luasnip'}, {name = 'path'},
+                    {name = 'nvim_lsp_signature_help'}
+                }, {{name = 'buffer'}})
+            })
+        end
+    }
+    use 'neovim/nvim-lspconfig'
 
-  use 'mattn/emmet-vim'
-  use 'leafgarland/typescript-vim'
-  use 'peitalin/vim-jsx-typescript'
-  use {
-    'styled-components/vim-styled-components',
-    branch = 'main'
-  }
-  use 'mxw/vim-jsx'
-  use {
-    'pangloss/vim-javascript',
-    config = function()
-      vim.g['javascript_plugin_jsdoc'] = 1
-    end
-  }
+    -- JS
 
-  if packer_bootstrap then
-    require('packer').sync()
-  end
+    use 'mattn/emmet-vim'
+    use 'leafgarland/typescript-vim'
+    use 'peitalin/vim-jsx-typescript'
+    use {'styled-components/vim-styled-components', branch = 'main'}
+    use 'mxw/vim-jsx'
+    use {
+        'pangloss/vim-javascript',
+        config = function() vim.g['javascript_plugin_jsdoc'] = 1 end
+    }
+
+    -- C++
+
+    use 'bfrg/vim-cpp-modern'
+
+    if packer_bootstrap then require('packer').sync() end
 end)
 

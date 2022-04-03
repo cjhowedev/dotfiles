@@ -1,5 +1,5 @@
 -- Make vim sane
-vim.opt.cp = false 
+vim.opt.cp = false
 vim.opt.enc = 'utf-8'
 
 -- Syntax highlighting
