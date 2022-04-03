@@ -42,12 +42,22 @@ return require('packer').startup(function(use)
         end
     }
 
-    -- File tree
+    -- Project Support
 
     use {
         'kyazdani42/nvim-tree.lua',
         requires = {'kyazdani42/nvim-web-devicons'},
-        config = function() require'nvim-tree'.setup {} end
+        config = function()
+            vim.g.nvim_tree_respect_buf_cwd = 1
+            require'nvim-tree'.setup {
+                update_cwd = true,
+                update_focused_file = {enable = true, update_cwd = true}
+            }
+        end
+    }
+    use {
+        "ahmedkhalf/project.nvim",
+        config = function() require'project_nvim'.setup {} end
     }
 
     -- Formatting
