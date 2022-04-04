@@ -14,6 +14,7 @@ return require('packer').startup(function(use)
     -- Visual plugins
 
     use 'morhetz/gruvbox'
+    use 'stevearc/dressing.nvim'
     use {
         'nathanaelkane/vim-indent-guides',
         config = function()
@@ -21,6 +22,11 @@ return require('packer').startup(function(use)
         end
     }
     use {'romgrk/barbar.nvim', requires = {'kyazdani42/nvim-web-devicons'}}
+    use {
+        'nvim-lualine/lualine.nvim',
+        requires = {'kyazdani42/nvim-web-devicons', opt = true},
+        config = function() require'lualine'.setup {} end
+    }
 
     -- Navigation plugins
 
@@ -44,6 +50,7 @@ return require('packer').startup(function(use)
 
     use 'tpope/vim-commentary'
     use 'tpope/vim-surround'
+    use 'tpope/vim-repeat'
     use 'tpope/vim-git'
     use 'tpope/vim-fugitive'
     use {
@@ -142,6 +149,10 @@ return require('packer').startup(function(use)
         end
     }
     use 'neovim/nvim-lspconfig'
+
+    -- Lua
+
+    use "folke/lua-dev.nvim"
 
     -- JS
 
