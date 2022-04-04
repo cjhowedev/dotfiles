@@ -8,6 +8,9 @@ vim.cmd([[
 silent! colorscheme gruvbox
 ]])
 
+-- enable mouse support
+vim.opt.mouse = 'a'
+
 -- show line numbers and cursor position
 vim.opt.nu = true
 vim.opt.ru = true
