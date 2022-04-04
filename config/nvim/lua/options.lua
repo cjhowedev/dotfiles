@@ -44,8 +44,9 @@ vim.opt.tf = true
 vim.opt.ls = 2
 vim.opt.sc = true
 
--- highlight while searching, incremental search, ignore case unless copttalized
-vim.opt.hls = true
+-- don't highlight while searching, incremental search, ignore case unless
+-- capitalized
+vim.opt.hls = false
 vim.opt.is = true
 vim.opt.ic = true
 vim.opt.scs = true
