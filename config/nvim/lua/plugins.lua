@@ -26,8 +26,19 @@ return require('packer').startup(function(use)
 
     use {
         'nvim-telescope/telescope.nvim',
-        requires = {{'nvim-lua/plenary.nvim'}}
+        requires = {{'nvim-lua/plenary.nvim'}},
+        config = function()
+            require'telescope'.setup {
+                extensions = {
+                    ['ui-select'] = {
+                        require('telescope.themes').get_dropdown {}
+                    }
+                }
+            }
+            require'telescope'.load_extension('ui-select')
+        end
     }
+    use {'nvim-telescope/telescope-ui-select.nvim'}
 
     -- Editing plugins
 
@@ -58,12 +69,16 @@ return require('packer').startup(function(use)
         end
     }
     use {
-        "ahmedkhalf/project.nvim",
+        'ahmedkhalf/project.nvim',
         config = function() require'project_nvim'.setup {} end
     }
 
     -- Formatting
 
+    use {
+        'lukas-reineke/lsp-format.nvim',
+        config = function() require'lsp-format'.setup {} end
+    }
     use {
         'sbdchd/neoformat',
         config = function()

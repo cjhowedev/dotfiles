@@ -1,6 +1,8 @@
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 
+local on_attach = require'lsp-format'.on_attach
+
 require('lspconfig')['sumneko_lua'].setup({
     settings = {
         Lua = {
@@ -9,12 +11,31 @@ require('lspconfig')['sumneko_lua'].setup({
             telemetry = {enable = false}
         }
     },
-    capabilities = capabilities
+    capabilities = capabilities,
+    on_attach = on_attach
 })
-require'lspconfig'.clangd.setup {capabilities = capabilities}
-require'lspconfig'.cmake.setup {capabilities = capabilities}
-require'lspconfig'.eslint.setup {capabilities = capabilities}
-require'lspconfig'.rust_analyzer.setup {capabilities = capabilities}
-require'lspconfig'.tsserver.setup {capabilities = capabilities}
-require'lspconfig'.gopls.setup {capabilities = capabilities}
+require'lspconfig'.clangd.setup {
+    capabilities = capabilities,
+    on_attach = on_attach
+}
+require'lspconfig'.cmake.setup {
+    capabilities = capabilities,
+    on_attach = on_attach
+}
+require'lspconfig'.eslint.setup {
+    capabilities = capabilities,
+    on_attach = on_attach
+}
+require'lspconfig'.rust_analyzer.setup {
+    capabilities = capabilities,
+    on_attach = on_attach
+}
+require'lspconfig'.tsserver.setup {
+    capabilities = capabilities,
+    on_attach = on_attach
+}
+require'lspconfig'.gopls.setup {
+    capabilities = capabilities,
+    on_attach = on_attach
+}
 
