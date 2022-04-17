@@ -115,6 +115,7 @@ bar {
 }
 
 gaps inner 20
+default_border pixel 4
 
 set $opacity 0.97
 for_window [class="Google-chrome"] opacity $opacity
