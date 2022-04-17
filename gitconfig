@@ -1,7 +1,7 @@
 [user]
 	name = Christian Howe
 	email = cj@cjhowe.dev
-	signingkey = 34F6CBDCEB49A7C3
+	signingkey = 3104D986E81E68EB
 [core]
 	excludesfile = ~/.gitignore
 [init]
