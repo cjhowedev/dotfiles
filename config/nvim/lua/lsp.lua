@@ -24,23 +24,12 @@ require'lspconfig'.clangd.setup {
     capabilities = capabilities,
     on_attach = on_attach
 }
-require'lspconfig'.cmake.setup {
-    capabilities = capabilities,
-    on_attach = on_attach
-}
+require'lspconfig'.cmake.setup {capabilities = capabilities}
 require'lspconfig'.eslint.setup {
     capabilities = capabilities,
     on_attach = on_attach
 }
-require'lspconfig'.rust_analyzer.setup {
-    capabilities = capabilities,
-    on_attach = on_attach
-}
 require'lspconfig'.tsserver.setup {
-    capabilities = capabilities,
-    on_attach = on_attach
-}
-require'lspconfig'.gopls.setup {
     capabilities = capabilities,
     on_attach = on_attach
 }

@@ -7,6 +7,8 @@ mkdir -p ~/.config/sway
 mkdir -p ~/.config/kitty
 mkdir -p ~/.local/share
 
+ln -sf $DIR/tmux.conf ~/.tmux.conf
+ln -sf $DIR/tmuxline.conf ~/.tmuxline.conf
 ln -sf $DIR/zshrc ~/.zshrc
 ln -sf $DIR/zprofile ~/.zprofile
 ln -sf $DIR/gitignore ~/.gitignore

@@ -86,7 +86,6 @@ return require('packer').startup(function(use)
         'kyazdani42/nvim-tree.lua',
         requires = {'kyazdani42/nvim-web-devicons'},
         config = function()
-            vim.g.nvim_tree_respect_buf_cwd = 1
             require'nvim-tree'.setup {
                 update_cwd = true,
                 update_focused_file = {enable = true, update_cwd = true}
@@ -111,6 +110,7 @@ return require('packer').startup(function(use)
             vim.g.neoformat_enabled_cpp = {'clangformat'}
             vim.g.neoformat_enabled_c = {'clangformat'}
             vim.g.neoformat_enabled_objc = {'clangformat'}
+            vim.g.neoformat_enabled_java = {}
             vim.g.neoformat_enabled_typescript = {'prettier'}
             vim.g.neoformat_enabled_typescriptreact = {'prettier'}
             vim.g.neoformat_enabled_javascript = {'prettier'}
@@ -121,7 +121,6 @@ return require('packer').startup(function(use)
             vim.g.neoformat_enabled_sass = {'prettier'}
             vim.g.neoformat_enabled_scss = {'prettier'}
             vim.g.neoformat_enabled_markdown = {'prettier'}
-            vim.g.neoformat_enabled_go = {'goimports'}
             vim.g.neoformat_basic_format_trim = 1
             vim.g.neoformat_basic_format_retab = 1
         end
@@ -188,17 +187,9 @@ return require('packer').startup(function(use)
 
     use 'bfrg/vim-cpp-modern'
 
-    -- Rust
+    -- Java
 
-    use 'rust-lang/rust.vim'
-
-    -- Dart
-    use 'dart-lang/dart-vim-plugin'
-    use {
-        'akinsho/flutter-tools.nvim',
-        requires = 'nvim-lua/plenary.nvim',
-        config = function() require'flutter-tools'.setup {} end
-    }
+    use 'mfussenegger/nvim-jdtls'
 
     if packer_bootstrap then require('packer').sync() end
 end)
